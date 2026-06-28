@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AnthraSync - Enterprise Knowledge Assistant</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom Style -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="logo-icon">
+                    <i class="fa-solid fa-brain"></i>
+                </div>
+                <div class="brand-name">
+                    <h1>AnthraSync</h1>
+                    <span>KNOWLEDGE ASSISTANT</span>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="section-header">
+                    <h2><i class="fa-solid fa-folder-open"></i> Knowledge Base</h2>
+                    <button id="refresh-docs-btn" title="Refresh list"><i class="fa-solid fa-rotate"></i></button>
+                </div>
+                <div class="doc-list" id="doc-list">
+                    <div class="doc-loading">Loading documents...</div>
+                </div>
+            </div>
+
+            <div class="sidebar-section upload-section">
+                <div class="section-header">
+                    <h2><i class="fa-solid fa-cloud-arrow-up"></i> Upload Document</h2>
+                </div>
+                <div class="upload-dropzone" id="upload-dropzone">
+                    <i class="fa-solid fa-file-pdf"></i>
+                    <p>Drag & drop file here or <span>browse</span></p>
+                    <small>Supports PDF, TXT, MD (Max 10MB)</small>
+                    <input type="file" id="file-input" accept=".pdf,.txt,.md" style="display: none;">
+                </div>
+                <div id="upload-status" class="upload-status"></div>
+            </div>
+
+            <div class="sidebar-footer">
+                <div class="status-indicator">
+                    <span class="status-dot online"></span>
+                    <span class="status-text">System Active</span>
+                </div>
+                <div class="system-meta">
+                    <span>LLM: GPT-3.5-Turbo</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Chat Area -->
+        <main class="chat-area">
+            <!-- Chat Header -->
+            <header class="chat-header">
+                <div class="header-info">
+                    <h2>Knowledge Conversation</h2>
+                    <p>Ask natural language questions across all ingested enterprise documents.</p>
+                </div>
+                <div class="header-actions">
+                    <button id="clear-chat-btn" class="btn btn-secondary" title="Clear conversation">
+                        <i class="fa-solid fa-trash-can"></i> Clear
+                    </button>
+                </div>
+            </header>
+
+            <!-- Messages Log -->
+            <div class="chat-log" id="chat-log">
+                <!-- Welcome Message -->
+                <div class="message assistant-message welcome-msg">
+                    <div class="avatar"><i class="fa-solid fa-robot"></i></div>
+                    <div class="message-content">
+                        <h3>Welcome to AnthraSync Knowledge Assistant!</h3>
+                        <p>I can help you retrieve information and answer questions from your company's documents. I cite source names, page numbers, and estimate response confidence based strictly on context.</p>
+                        <div class="suggested-queries">
+                            <p>Try asking:</p>
+                            <button class="suggest-btn" data-query="What is the employee leave policy?">
+                                "What is the employee leave policy?"
+                            </button>
+                            <button class="suggest-btn" data-query="What is the customer refund policy?">
+                                "What is the customer refund policy?"
+                            </button>
+                            <button class="suggest-btn" data-query="What are the corporate password requirements?">
+                                "What are the corporate password requirements?"
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chat Input Area -->
+            <footer class="chat-input-container">
+                <form id="chat-form" class="chat-form">
+                    <div class="input-wrapper">
+                        <input type="text" id="user-input" placeholder="Ask a question about HR policies, compliance guidelines, products..." autocomplete="off">
+                        <button type="submit" id="send-btn" class="send-btn" disabled>
+                            <i class="fa-solid fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </form>
+            </footer>
+        </main>
+    </div>
+    
+    <!-- Custom JS -->
+    <script src="script.js"></script>
+</body>
+</html>
